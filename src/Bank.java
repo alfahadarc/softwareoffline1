@@ -346,6 +346,7 @@ public class Bank {
     }
 
 
+    //for loan approval
     public boolean chekForLoanRequest(String employeeType) {
         if(employeeType.equals("MD") || employeeType.equals("S1") || employeeType.equals("S2")){
             if(this.pendingLoans.size() !=0){
@@ -371,35 +372,6 @@ public class Bank {
                 this.S2.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
             }
 
-//
-//
-//            String type = loanRequest.getType();
-//            String name = loanRequest.getName();
-//            double money = loanRequest.getAmount();
-//            if(type.equals("Fixed_deposit")){
-//                FixedDepositAccount fixedDepositAccount = findInFixedDepositAccount(name);
-//                if(fixedDepositAccount != null){
-//                    fixedDepositAccount.setLoan(money);
-//                }
-//            }else if(type.equals("Savings")){
-//                SavingAccount savingAccount = findInSavingAccount(name);
-//                if(savingAccount != null){
-//                    savingAccount.setLoan(money);
-//                }
-//            }else if(type.equals("Loan")){
-//                LoanAccount loanAccount  = findInLoanAccount(name);
-//                if(loanAccount != null){
-//                    loanAccount.setLoan(money);
-//                }
-//            }else if(type.equals("Student")){
-//                StudentAccount studentAccount = findInStudentAccount(name);
-//                if(studentAccount != null){
-//                    studentAccount.setLoan(money);
-//                }
-//            }else{
-//                System.out.println("Error!!unknown type(if Fixed deposit give Fixed_deposit)");
-//            }
-
         }else{
             System.out.println("You don’t have permission for this operation");
 
@@ -407,4 +379,49 @@ public class Bank {
     }
 
 
+    public void changeInterestRate(String accountType, String employeeType, double value) {
+        if(employeeType.equals("MD")){
+            this.MD.ChangeInterestRate(accountType, value, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+        }else{
+            System.out.println("You don’t have permission for this operation");
+
+        }
+    }
+    //see changed rate
+    public void seeInterestRateOnDeposit(String type){
+        if(type.equals("Student")){
+            for(StudentAccount st: this.allStudentsAccounts){
+                System.out.println("student accounts int rate "+st.getIntRateOnDeposit());
+            }
+        }else if(type.equals("Savings")){
+            for(SavingAccount st: this.allSavingAccounts){
+                System.out.println("savings accounts int rate "+st.getIntRateOnDeposit());
+            }
+        }else if(type.equals("Fixed_deposit")){
+            for(FixedDepositAccount st: this.allFixedDepositAccounts){
+                System.out.println("fixed accounts int rate "+st.getIntRateOnDeposit());
+            }
+        }
+    }
+
+    //see internal fund
+    public void seeFund(String employeeType) {
+        if(employeeType.equals("MD")){
+            this.MD.SeeInternalFund(this.initial_fund);
+        }else{
+            System.out.println("You don’t have permission for this operation");
+
+        }
+    }
+
+
+    /*
+    -----------------------------------------------------------------------------------------------
+    increment 1 year
+    -----------------------------------------------------------------------------------------------
+
+     */
+    public void increment1Year() {
+
+    }
 }

@@ -48,4 +48,28 @@ public class ManagingDirector extends Employee{
         }
 
     }
+
+    public void ChangeInterestRate(String accountType, double value, LinkedList<StudentAccount> allStudentsAccounts, LinkedList<SavingAccount> allSavingAccounts, LinkedList<FixedDepositAccount> allFixedDepositAccounts, LinkedList<LoanAccount> allLoanAccounts) {
+        if(accountType.equals("Fixed_deposit")){
+            for (FixedDepositAccount st: allFixedDepositAccounts){
+                st.setIntRateOnDeposit(value);
+            }
+        }else if(accountType.equals("Savings")){
+            for (SavingAccount st: allSavingAccounts){
+                st.setIntRateOnDeposit(value);
+            }
+        }else if(accountType.equals("Loan")){
+            System.out.println("No interest rate for this account");
+        }else if(accountType.equals("Student")){
+            for (StudentAccount st: allStudentsAccounts){
+                st.setIntRateOnDeposit(value);
+            }
+        }else{
+            System.out.println("Error!!unknown type(if Fixed deposit give Fixed_deposit)");
+        }
+    }
+
+    public void SeeInternalFund(double initial_fund) {
+        System.out.println("Internal fund of bank is "+ initial_fund+"$");
+    }
 }

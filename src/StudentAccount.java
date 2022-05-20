@@ -11,6 +11,13 @@ public class StudentAccount extends Account{
         this.successCreatedMsg("Student");
     }
 
+    public double getIntRateOnDeposit() {
+        return intRateOnDeposit;
+    }
+
+    public void setIntRateOnDeposit(double intRateOnDeposit) {
+        this.intRateOnDeposit = intRateOnDeposit;
+    }
 
     //not first time deposit
     public void DepositMoney(double money) {

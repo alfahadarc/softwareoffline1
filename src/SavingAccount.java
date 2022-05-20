@@ -9,6 +9,14 @@ public class SavingAccount extends Account{
     }
 
 
+    public double getIntRateOnDeposit() {
+        return intRateOnDeposit;
+    }
+
+    public void setIntRateOnDeposit(double intRateOnDeposit) {
+        this.intRateOnDeposit = intRateOnDeposit;
+    }
+
     public void DepositMoney(double money) {
         this.setDeposit(this.getDeposit()+ money);
         this.successDepositMsg("Savings",money);

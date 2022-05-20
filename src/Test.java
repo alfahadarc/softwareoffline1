@@ -3,16 +3,16 @@ public class Test {
         Bank bank = new Bank();
 
 
-//        bank.openAccount("Alice", "Student", 10000);
+        bank.openAccount("Alice", "Student", 10000);
 //        bank.requestLoan("Alice", "Student", 1000);
 
-//        bank.openAccount("dunk", "Loan", 10000);
+        bank.openAccount("dunk", "Loan", 10000);
 //        bank.requestLoan("dunk", "Loan", 475);
 //
-//        bank.openAccount("A", "Savings", 10000);
+        bank.openAccount("A", "Savings", 10000);
 //        bank.requestLoan("A", "Savings", 10000);
 
-//        bank.openAccount("e", "Fixed_deposit", 100000);
+        bank.openAccount("e", "Fixed_deposit", 100000);
 //        bank.requestLoan("e", "Fixed_deposit", 500);
 
 //        bank.openAccount("dunk", "Loan", 10000);
@@ -34,6 +34,27 @@ public class Test {
 //            bank.approveLoanRequest("S1");
 //        }
 //        bank.query("e", "Fixed_deposit");
+
+
+//        System.out.println();
+//        bank.seeInterestRateOnDeposit("Student");
+//        bank.seeInterestRateOnDeposit("Savings");
+//        bank.seeInterestRateOnDeposit("Fixed_deposit");
+//
+//        bank.changeInterestRate( "Savings", "MD", 7.50);
+//        bank.changeInterestRate( "Student", "MD", 7.50);
+//        bank.changeInterestRate( "Fixed_deposit", "MD", 7.50);
+//        System.out.println();
+//
+//       bank.seeInterestRateOnDeposit("Student");
+//        bank.seeInterestRateOnDeposit("Savings");
+//       bank.seeInterestRateOnDeposit("Fixed_deposit");
+
+        bank.seeFund("MD");
+
+
+        bank.increment1Year();
+
 
 
 
