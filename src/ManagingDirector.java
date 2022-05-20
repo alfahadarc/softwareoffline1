@@ -53,6 +53,7 @@ public class ManagingDirector extends Employee{
         if(accountType.equals("Fixed_deposit")){
             for (FixedDepositAccount st: allFixedDepositAccounts){
                 st.setIntRateOnDeposit(value);
+
             }
         }else if(accountType.equals("Savings")){
             for (SavingAccount st: allSavingAccounts){
@@ -60,6 +61,7 @@ public class ManagingDirector extends Employee{
             }
         }else if(accountType.equals("Loan")){
             System.out.println("No interest rate for this account");
+            return;
         }else if(accountType.equals("Student")){
             for (StudentAccount st: allStudentsAccounts){
                 st.setIntRateOnDeposit(value);

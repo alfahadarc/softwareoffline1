@@ -93,19 +93,19 @@ public class Bank {
 
         //type checking
         if(type.equals("Student")){
-            StudentAccount newAccount = new StudentAccount(name, deposit);
+            StudentAccount newAccount = new StudentAccount(name,"Student", deposit);
             this.allStudentsAccounts.add(newAccount);
 
         }else if(type.equals("Loan")){
-            LoanAccount newAccount = new LoanAccount(name , deposit);
+            LoanAccount newAccount = new LoanAccount(name ,"Loan", deposit);
             this.allLoanAccounts.add(newAccount);
 
         }else if(type.equals("Savings")){
-            SavingAccount newAccount = new SavingAccount(name, deposit);
+            SavingAccount newAccount = new SavingAccount(name,"Savings", deposit);
             this.allSavingAccounts.add(newAccount);
         }else if(type.equals("Fixed_deposit")){
             if(deposit >= 100000){
-                FixedDepositAccount newAccount = new FixedDepositAccount(name , deposit);
+                FixedDepositAccount newAccount = new FixedDepositAccount(name ,"Fixed_deposit", deposit);
                 this.allFixedDepositAccounts.add(newAccount);
             }else{
                 System.out.println("For this account first deposit must not be less than 100,000$");
@@ -328,15 +328,15 @@ public class Bank {
                 }else if(employee.equals("S2")){
                     this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }else if(employee.equals("C1")){
-                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                    this.C1.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }else if(employee.equals("C2")){
-                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                    this.C2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }else if(employee.equals("C3")){
-                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                    this.C3.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }else if(employee.equals("C4")){
-                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                    this.C4.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }else if(employee.equals("C5")){
-                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                    this.C5.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
                 }
             }else{
                 System.out.println("Not an employee");
@@ -382,6 +382,9 @@ public class Bank {
     public void changeInterestRate(String accountType, String employeeType, double value) {
         if(employeeType.equals("MD")){
             this.MD.ChangeInterestRate(accountType, value, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+            if(!accountType.equals("Loan")) {
+                System.out.println("interest rate changes to: " + value);
+            }
         }else{
             System.out.println("You don’t have permission for this operation");
 
@@ -461,5 +464,57 @@ public class Bank {
             //no service charge
         }
         System.out.println("1 year passed");
+    }
+
+
+    /*
+    ---------------------------------------------------------------------------------------
+    some util function
+    ---------------------------------------------------------------------------------------
+     */
+
+    public boolean isUser(String name){
+        if(this.usersName.contains(name)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean isEmployee(String name){
+        if(this.employees.contains(name)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //get type
+
+    public String getTypeOfUser(String name){
+        // students
+        for (StudentAccount st: allStudentsAccounts){
+            if(st.getName().equals(name)){
+                return st.getType();
+            }
+        }
+        //savings
+        for (SavingAccount st: allSavingAccounts){
+            if(st.getName().equals(name)){
+                return st.getType();
+            }
+        }
+        //fixed
+        for (FixedDepositAccount st: allFixedDepositAccounts){
+            if(st.getName().equals(name)){
+                return st.getType();
+            }
+        }
+        //loan
+        for (LoanAccount st: allLoanAccounts){
+            if(st.getName().equals(name)){
+                return st.getType();
+            }
+        }
+        return null;
     }
 }

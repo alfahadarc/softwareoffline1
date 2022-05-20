@@ -3,8 +3,8 @@ public class SavingAccount extends Account{
     double intRateOnDeposit = 0.1;
     double serviceCharge = 500;
 
-    public SavingAccount(String name, double deposit) {
-        super(name, deposit);
+    public SavingAccount(String name,String type, double deposit) {
+        super(name,type, deposit);
         this.successCreatedMsg("Savings");
     }
 

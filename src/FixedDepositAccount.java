@@ -14,8 +14,8 @@ public class FixedDepositAccount extends  Account{
         this.intRateOnDeposit = intRateOnDeposit;
     }
 
-    public FixedDepositAccount(String name, double deposit) {
-            super(name, deposit);
+    public FixedDepositAccount(String name,String type, double deposit) {
+            super(name,type, deposit);
             this.successCreatedMsg("Fixed_deposit");
     }
     public void DepositMoney(double money) {

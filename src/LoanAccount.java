@@ -2,8 +2,8 @@ public class LoanAccount extends Account{
     double initialLoan;
 
     //max loan is 5% of first
-    public LoanAccount(String name, double deposit) {
-        super(name, 0);
+    public LoanAccount(String name,String type, double deposit) {
+        super(name,type, 0);
         this.setLoan(deposit);
         this.initialLoan = deposit;
         this.successCreatedMsg("Loan");

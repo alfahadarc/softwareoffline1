@@ -17,10 +17,10 @@ public class Test {
 
 //        bank.openAccount("dunk", "Loan", 10000);
 //        bank.depositMoney("dunk", "Loan", 500);
-//        bank.withdrawMoney("dunk", "Loan", 9000);
-//        bank.lookUp("Alice", "MD");
-//        bank.lookUp("dunk", "C2");
-//        bank.lookUp("Alice", "S1");
+        bank.withdrawMoney("dunk", "Loan", 9000);
+        bank.lookUp("Alice", "MD");
+        bank.lookUp("Alice", "C2");
+        bank.lookUp("Alice", "S1");
 
 
 //        System.out.println( bank.chekForLoanRequest("MD"));
@@ -30,9 +30,9 @@ public class Test {
 
 //        bank.query("e", "Fixed_deposit");
 //
-        if(bank.chekForLoanRequest("S1")){
-            bank.approveLoanRequest("S1");
-        }
+//        if(bank.chekForLoanRequest("S1")){
+//            bank.approveLoanRequest("S1");
+//        }
 //        bank.query("e", "Fixed_deposit");
 
 
@@ -56,20 +56,20 @@ public class Test {
 //        bank.openAccount("e", "Fixed_deposit", 100000);
 //        bank.withdrawMoney("e", "Fixed_deposit", 50000);
 //        bank.query("e", "Fixed_deposit");
-        System.out.println();
-        bank.query("Alice", "Student");
+//        System.out.println();
+//        bank.query("Alice", "Student");
 //        bank.query("dunk", "Loan");
 //        bank.query("A", "Savings");
 //        bank.query("e", "Fixed_deposit");
 
         //bank.changeInterestRate( "Student", "MD", 7.50);
-        bank.increment1Year();
+//        bank.increment1Year();
 
 //        bank.withdrawMoney("e", "Fixed_deposit", 50000);
 //        bank.query("e", "Fixed_deposit");
 
-        System.out.println();
-        bank.query("Alice", "Student");
+//        System.out.println();
+//        bank.query("Alice", "Student");
 //        bank.query("dunk", "Loan");
 //        bank.query("A", "Savings");
 //        bank.query("e", "Fixed_deposit");

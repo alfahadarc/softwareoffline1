@@ -4,6 +4,7 @@ public abstract class Account {
     double deposit;//current balance
     double loan;
     int year;
+    String type;
 
     public Account() {
         this.deposit = 0;
@@ -15,11 +16,12 @@ public abstract class Account {
         return loanIntRate;
     }
 
-    public Account(String name, double deposit) {
+    public Account(String name,String type, double deposit) {
         this.deposit = deposit;
         this.name = name;
         this.year = 0;
         this.loan = 0;
+        this.type = type;
     }
 
     public String getName() {
@@ -28,6 +30,10 @@ public abstract class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public int getYear() {

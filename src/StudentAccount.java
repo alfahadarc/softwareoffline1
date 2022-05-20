@@ -5,8 +5,8 @@ public class StudentAccount extends Account{
     final double serviceCharge = 500;
 
 
-    public StudentAccount(String name, double deposit) {
-        super(name,deposit);
+    public StudentAccount(String name,String type, double deposit) {
+        super(name,type,deposit);
         //successful msg
         this.successCreatedMsg("Student");
     }
