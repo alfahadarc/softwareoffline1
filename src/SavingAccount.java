@@ -13,4 +13,14 @@ public class SavingAccount extends Account{
         this.setDeposit(this.getDeposit()+ money);
         this.successDepositMsg("Savings",money);
     }
+
+    @Override
+    public void WithdrawMoney(double money) {
+        if(this.getDeposit() - money >= 1000) {
+            super.WithdrawMoney(money);
+        }else{
+            System.out.println("Invalid transaction; current balance "+this.getDeposit()+"$");
+            return;
+        }
+    }
 }

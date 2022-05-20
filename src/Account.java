@@ -3,6 +3,7 @@ public abstract class Account {
     final double loanIntRate = 0.1;//taken loan's interest
     double deposit;//current balance
     double loan;
+    int year;
 
     public Account() {
         this.deposit = 0;
@@ -12,6 +13,7 @@ public abstract class Account {
     public Account(String name,double deposit) {
         this.deposit = deposit;
         this.name = name;
+        this.year = 0;
     }
 
     public String getName() {
@@ -20,6 +22,14 @@ public abstract class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public double getDeposit() {
@@ -54,5 +64,18 @@ public abstract class Account {
 
         }
     }
+
+
+    //abstract ass all must have it
     public abstract void DepositMoney(double money);
+    //not abstract as all doesn't have it
+    public void WithdrawMoney(double money){
+        if(this.getDeposit() - money >=0) {
+            this.setDeposit(this.getDeposit() - money);
+            //withdraw success msg
+            System.out.println("withdraw " + money + "$; current balance " + this.deposit+"$");
+        }else{
+            System.out.println("Invalid transaction; current balance "+this.getDeposit()+"$");
+        }
+    }
 }

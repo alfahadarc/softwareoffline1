@@ -1,7 +1,7 @@
 public class FixedDepositAccount extends  Account{
     double firstDeposit =100000;
     double minimumDeposit = 50000;
-    int minMaturityPeriod = 1;
+    final int minMaturityPeriod = 1;
     double maxLoan = 100000;
     double intRateOnDeposit = 0.15;
     double serviceCharge = 500;
@@ -13,5 +13,14 @@ public class FixedDepositAccount extends  Account{
     public void DepositMoney(double money) {
         this.setDeposit(this.getDeposit()+ money);
         this.successDepositMsg("Fixed_deposit",money);
+    }
+
+    @Override
+    public void WithdrawMoney(double money) {
+        if(this.getYear()>= this.minMaturityPeriod) {
+            super.WithdrawMoney(money);
+        }else{
+            System.out.println("Invalid transaction maturity is not enough");
+        }
     }
 }

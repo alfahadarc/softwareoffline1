@@ -17,4 +17,14 @@ public class StudentAccount extends Account{
         this.setDeposit(this.getDeposit()+ money);
         this.successDepositMsg("Student",money);
     }
+
+    @Override
+    public void WithdrawMoney(double money) {
+        if(money<= 10000) {
+            super.WithdrawMoney(money);
+        }else{
+            System.out.println("Invalid transaction; current balance "+this.getDeposit()+"$");
+            return;
+        }
+    }
 }
