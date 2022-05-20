@@ -3,24 +3,31 @@ public class Test {
         Bank bank = new Bank();
 
 
-        bank.openAccount("Alice", "Student", 10000);
-        bank.requestLoan("Alice", "Student", 1000);
-
-        bank.openAccount("dunk", "Loan", 10000);
+        bank.openAccount("Alice", "Student", 1000);
+        bank.depositMoney("Alice", "Student", 20000);
+        bank.requestLoan("Alice", "Student", 500);
+        bank.approveLoanRequest("S1");
+        System.out.println();
+        bank.query("Alice", "Student");
+        bank.changeInterestRate( "Student", "MD", 7.50);
+        bank.increment1Year();
+        System.out.println();
+        bank.query("Alice", "Student");
+//        bank.openAccount("dunk", "Loan", 10000);
 //        bank.requestLoan("dunk", "Loan", 475);
 //
-        bank.openAccount("A", "Savings", 10000);
+//        bank.openAccount("A", "Savings", 10000);
 //        bank.requestLoan("A", "Savings", 10000);
 
-        bank.openAccount("e", "Fixed_deposit", 100000);
+//        bank.openAccount("e", "Fixed_deposit", 100000);
 //        bank.requestLoan("e", "Fixed_deposit", 500);
 
 //        bank.openAccount("dunk", "Loan", 10000);
 //        bank.depositMoney("dunk", "Loan", 500);
-        bank.withdrawMoney("dunk", "Loan", 9000);
-        bank.lookUp("Alice", "MD");
-        bank.lookUp("Alice", "C2");
-        bank.lookUp("Alice", "S1");
+//        bank.withdrawMoney("dunk", "Loan", 9000);
+//        bank.lookUp("Alice", "MD");
+//        bank.lookUp("Alice", "C2");
+//        bank.lookUp("Alice", "S1");
 
 
 //        System.out.println( bank.chekForLoanRequest("MD"));

@@ -429,11 +429,14 @@ public class Bank {
             st.setYear(st.getYear()+1);
             //Interest rates on deposit
             st.InterestOnDeposit();
+            //System.out.println(st.getDeposit());
             //deduce service charge
             st.setDeposit(st.getDeposit() - 500);
+            //System.out.println(st.getDeposit());
             //deduce for loan if exists
             if(st.getLoan() != 0){
                 st.deducedForLoan();
+                //System.out.println(st.getDeposit());
             }
         }
         for(SavingAccount st:this.allSavingAccounts){

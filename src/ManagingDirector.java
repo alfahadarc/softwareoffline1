@@ -15,6 +15,7 @@ public class ManagingDirector extends Employee{
             for (FixedDepositAccount st: allFixedDepositAccounts){
                 if(st.getName().equals(name)){
                     st.setLoan(st.getLoan()+ money);
+                    st.setDeposit(st.getDeposit()+money);
                     System.out.println("Loan for "+name +" approved ");
                     return;
                 }
@@ -23,6 +24,7 @@ public class ManagingDirector extends Employee{
             for (SavingAccount st: allSavingAccounts){
                 if(st.getName().equals(name)){
                     st.setLoan(st.getLoan()+ money);
+                    st.setDeposit(st.getDeposit()+money);
                     System.out.println("Loan for "+name +" approved ");
                     return;
                 }
@@ -31,6 +33,7 @@ public class ManagingDirector extends Employee{
             for (LoanAccount st: allLoanAccounts){
                 if(st.getName().equals(name)){
                     st.setLoan(st.getLoan()+ money);
+                    st.setDeposit(st.getDeposit()+money);
                     System.out.println("Loan for "+name +" approved ");
                     return;
                 }
@@ -39,6 +42,7 @@ public class ManagingDirector extends Employee{
             for (StudentAccount st: allStudentsAccounts){
                 if(st.getName().equals(name)){
                     st.setLoan(st.getLoan()+ money);
+                    st.setDeposit(st.getDeposit()+money);
                     System.out.println("Loan for "+name +" approved ");
                     return;
                 }

@@ -87,107 +87,59 @@ public class Handler {
                     ---------------same code
                      */
 
-                }else if(bank.isEmployee(name)){ //name can not be changed
+                }else if(bank.isEmployee(name)){
                     System.out.print(name+" active");
-                    //type of employee
-
-                    if(name.equals("MD")){
-                        //check for loan
+                    if(name.equals("MD") || name.equals("S1") || name.equals("S2")){
+                        //check for pending loan
                         if(bank.chekForLoanRequest(name)){
                             System.out.println(", there are loan approvals pending");
                         }else{
                             System.out.println(", no loan approvals pending");
                         }
-                        //md
-                        while(!command.equals("Close")) { //----------------command after open user
-
-                            command = scanner.next();//new commands
-                            if(command.equals("Approve")){
-                                //Loan approval
-                                String loanCommand = scanner.next(); //to discard loan after approve command
-                                bank.approveLoanRequest(name);
-
-                            }else if(command.equals("Change")){
-                                //change rate
-                                type  = scanner.next();
-                                amount = Double.parseDouble(scanner.next());
-                                bank.changeInterestRate( type, name, amount);
-
-                            }else if(command.equals("Lookup")){
-                                //look up
-                               String nameUser = scanner.next();
-                                bank.lookUp(nameUser, name);
-
-                            }else if(command.equals("See")){
-                                //see internal fund
-                                bank.seeFund(name);
-
-                            }else if(command.equals("Close")){
-                                //close
-                                System.out.println("Operations for " + name + " closed " );
-                            }else{
-                                System.out.println("Command unrecognized");
-                            }
-
-                        }
-                        /*
-                        ----------------------------
-                         */
-
-                    }else if(name.equals("S1") || name.equals("S2")) {
-                        //officer
-                        //check for loan
-                        if(bank.chekForLoanRequest(name)){
-                            System.out.println(", there are loan approvals pending");
-                        }else{
-                            System.out.println(", no loan approvals pending");
-                        }
-                        //md
-                        while(!command.equals("Close")) { //----------------command after open user
-
-                            command = scanner.next();//new commands
-                            if(command.equals("Approve")){
-                                //Loan approval
-                                String loanCommand = scanner.next(); //to discard loan after approve command
-                                bank.approveLoanRequest(name);
-
-                            }else if(command.equals("Change")){
-                                //change rate
-                                type  = scanner.next();
-                                amount = Double.parseDouble(scanner.next());
-                                System.out.println("You don’t have permission for this operation");
-
-                            }else if(command.equals("Lookup")){
-                                //look up
-                                String nameUser = scanner.next();
-                                bank.lookUp(nameUser, name);
-
-                            }else if(command.equals("See")){
-                                //see internal fund
-                                bank.seeFund(name);
-
-                            }else if(command.equals("Close")){
-                                //close
-                                System.out.println("Operations for " + name + " closed " );
-                            }else{
-                                System.out.println("Command unrecognized");
-                            }
-
-                        }
-
-                        /*
-                        --------------------------------------------------------------------------
-                         */
                     }else{
+                        System.out.println();
+                    }
+                    //next command loop
+                    while(!command.equals("Close")) { //----------------command after open user
+
+                        command = scanner.next();//new commands
+                        if(command.equals("Approve")){
+                            //Loan approval
+                            String loanCommand = scanner.next(); //to discard loan after approve command
+                            bank.approveLoanRequest(name);
+
+                        }else if(command.equals("Change")){
+                            //change rate
+                            type  = scanner.next();
+                            amount = Double.parseDouble(scanner.next());
+                            bank.changeInterestRate( type, name, amount);
+
+                        }else if(command.equals("Lookup")){
+                            //look up
+                            String nameUser = scanner.next();
+                            bank.lookUp(nameUser, name);
+
+                        }else if(command.equals("See")){
+                            //see internal fund
+                            bank.seeFund(name);
+
+                        }else if(command.equals("Close")){
+                            //close
+                            System.out.println("Operations for " + name + " closed " );
+                        }else{
+                            System.out.println("Command unrecognized");
+                        }
 
                     }
-
-                    //cashier
-                }else{
+                }
+                else{
                     System.out.println("No user found");
                 }
 
-            }else if(command.equals("Stop")){
+            }else if(command.equals("INC")){
+                bank.increment1Year();
+            }
+            else if(command.equals("Stop")){
                 return;
             }
             else{
