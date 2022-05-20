@@ -1,12 +1,24 @@
 import java.util.LinkedList;
 
 public class Bank {
-    LinkedList<String> usersName;
-    LinkedList<SavingAccount> allSavingAccounts;
-    LinkedList<StudentAccount> allStudentsAccounts;
-    LinkedList<FixedDepositAccount> allFixedDepositAccounts;
-    LinkedList<LoanAccount> allLoanAccounts;
-    LinkedList<RequestLoanObj> pendingLoans;
+    final double initial_fund = 1000000;
+    private LinkedList<String> usersName;
+    private LinkedList<SavingAccount> allSavingAccounts;
+    private LinkedList<StudentAccount> allStudentsAccounts;
+    private LinkedList<FixedDepositAccount> allFixedDepositAccounts;
+    private LinkedList<LoanAccount> allLoanAccounts;
+    private LinkedList<RequestLoanObj> pendingLoans;
+    private LinkedList<String> employees;
+
+    //employees
+    ManagingDirector MD;
+    Officer S1 ;
+    Officer S2;
+    Cashier C1 ;
+    Cashier C2 ;
+    Cashier C3 ;
+    Cashier C4 ;
+    Cashier C5 ;
 
     public Bank() {
         this.usersName = new LinkedList<>();
@@ -15,6 +27,57 @@ public class Bank {
         this.allLoanAccounts = new LinkedList<>();
         this.allSavingAccounts = new LinkedList<>();
         this.pendingLoans = new LinkedList<>();
+        this.employees = new LinkedList<>();
+
+
+
+        //create employee
+         MD = new ManagingDirector("MD");
+        this.employees.add("MD");
+         S1 = new Officer("S1");
+        this.employees.add("S1");
+        S2 = new Officer("S2");
+        this.employees.add("S2");
+         C1 = new Cashier("C1");
+        this.employees.add("C1");
+         C2 = new Cashier("C2");
+        this.employees.add("C2");
+         C3 = new Cashier("C3");
+        this.employees.add("C3");
+         C4 = new Cashier("C4");
+        this.employees.add("C4");
+         C5 = new Cashier("C5");
+        this.employees.add("C5");
+
+        System.out.println("Bank Created; MD, S1, S2, C1, C2, C3, C4, C5 created");
+    }
+
+    public double getInitial_fund() {
+        return initial_fund;
+    }
+
+    public LinkedList<String> getUsersName() {
+        return usersName;
+    }
+
+    public LinkedList<SavingAccount> getAllSavingAccounts() {
+        return allSavingAccounts;
+    }
+
+    public LinkedList<StudentAccount> getAllStudentsAccounts() {
+        return allStudentsAccounts;
+    }
+
+    public LinkedList<FixedDepositAccount> getAllFixedDepositAccounts() {
+        return allFixedDepositAccounts;
+    }
+
+    public LinkedList<LoanAccount> getAllLoanAccounts() {
+        return allLoanAccounts;
+    }
+
+    public LinkedList<RequestLoanObj> getPendingLoans() {
+        return pendingLoans;
     }
 
     //create account
@@ -25,6 +88,7 @@ public class Bank {
             return;
         }else{
             this.usersName.add(name);//save the name
+            //System.out.println(this.usersName.getFirst());
         }
 
         //type checking
@@ -249,4 +313,98 @@ public class Bank {
     Employee codes start here
     ------------------------------------------------------------------------------------------------
      */
+
+    //for lookup
+    public void lookUp(String name, String employee){
+        if(!this.usersName.contains(name)){
+            System.out.println("No user with this name");
+            return;
+        }else{
+            if(this.employees.contains(employee)) {
+                if(employee.equals("MD")) {
+                    this.MD.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("S1")){
+                    this.S1.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("S2")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("C1")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("C2")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("C3")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("C4")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }else if(employee.equals("C5")){
+                    this.S2.lookUp(name, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                }
+            }else{
+                System.out.println("Not an employee");
+            }
+        }
+
+    }
+
+
+    public boolean chekForLoanRequest(String employeeType) {
+        if(employeeType.equals("MD") || employeeType.equals("S1") || employeeType.equals("S2")){
+            if(this.pendingLoans.size() !=0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            System.out.println("You don’t have permission for this operation");
+            return false;
+        }
+    }
+
+    public void approveLoanRequest(String employeeType) {
+        if(employeeType.equals("MD") || employeeType.equals("S1") || employeeType.equals("S2")){
+           RequestLoanObj loanRequest = this.getPendingLoans().pollLast(); //pending list empty
+           //set user loan; first find the user
+            if(employeeType.equals("MD")){
+                this.MD.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+            }else if(employeeType.equals("S1")){
+                this.S1.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+            }else {
+                this.S2.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+            }
+
+//
+//
+//            String type = loanRequest.getType();
+//            String name = loanRequest.getName();
+//            double money = loanRequest.getAmount();
+//            if(type.equals("Fixed_deposit")){
+//                FixedDepositAccount fixedDepositAccount = findInFixedDepositAccount(name);
+//                if(fixedDepositAccount != null){
+//                    fixedDepositAccount.setLoan(money);
+//                }
+//            }else if(type.equals("Savings")){
+//                SavingAccount savingAccount = findInSavingAccount(name);
+//                if(savingAccount != null){
+//                    savingAccount.setLoan(money);
+//                }
+//            }else if(type.equals("Loan")){
+//                LoanAccount loanAccount  = findInLoanAccount(name);
+//                if(loanAccount != null){
+//                    loanAccount.setLoan(money);
+//                }
+//            }else if(type.equals("Student")){
+//                StudentAccount studentAccount = findInStudentAccount(name);
+//                if(studentAccount != null){
+//                    studentAccount.setLoan(money);
+//                }
+//            }else{
+//                System.out.println("Error!!unknown type(if Fixed deposit give Fixed_deposit)");
+//            }
+
+        }else{
+            System.out.println("You don’t have permission for this operation");
+
+        }
+    }
+
+
 }
