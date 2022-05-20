@@ -17,4 +17,14 @@ public class LoanAccount extends Account{
             System.out.println("Deposit amount is greater then loan");
         }
     }
+    @Override
+    public boolean RequestLoanValidity(double amount) {
+        double maxLoan = this.getLoan() * 0.05;
+        if(amount <= maxLoan){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }

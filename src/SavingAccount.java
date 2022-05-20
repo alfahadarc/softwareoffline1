@@ -1,5 +1,5 @@
 public class SavingAccount extends Account{
-    double maxLoan= 10000;
+    final double maxLoan= 10000;
     double intRateOnDeposit = 0.1;
     double serviceCharge = 500;
 
@@ -22,5 +22,15 @@ public class SavingAccount extends Account{
             System.out.println("Invalid transaction; current balance "+this.getDeposit()+"$");
             return;
         }
+    }
+
+    @Override
+    public boolean RequestLoanValidity(double amount) {
+        if(amount <= this.maxLoan){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

@@ -14,6 +14,7 @@ public abstract class Account {
         this.deposit = deposit;
         this.name = name;
         this.year = 0;
+        this.loan = 0;
     }
 
     public String getName() {
@@ -78,4 +79,10 @@ public abstract class Account {
             System.out.println("Invalid transaction; current balance "+this.getDeposit()+"$");
         }
     }
+    //same for all
+    public void Query(){
+        System.out.println("Current balance "+this.deposit+"$; Loan "+this.loan+"$");
+    }
+    //check validity for request loan
+    public abstract boolean RequestLoanValidity(double amount);
 }

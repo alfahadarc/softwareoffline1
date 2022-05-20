@@ -27,4 +27,14 @@ public class StudentAccount extends Account{
             return;
         }
     }
+
+    @Override
+    public boolean RequestLoanValidity(double amount) {
+        if(amount <= this.maxLoan){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
