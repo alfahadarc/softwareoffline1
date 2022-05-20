@@ -41,4 +41,12 @@ public class FixedDepositAccount extends  Account{
         }
 
     }
+
+    public void InterestOnDeposit() {
+        this.setDeposit(this.getDeposit() + this.getDeposit() * this.intRateOnDeposit);
+    }
+
+    public void deducedForLoan() {
+        this.setDeposit(this.getDeposit() - this.getLoan()*this.getLoanIntRate());
+    }
 }

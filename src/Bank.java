@@ -422,6 +422,44 @@ public class Bank {
 
      */
     public void increment1Year() {
+        for(StudentAccount st: this.allStudentsAccounts){
+            st.setYear(st.getYear()+1);
+            //Interest rates on deposit
+            st.InterestOnDeposit();
+            //deduce service charge
+            st.setDeposit(st.getDeposit() - 500);
+            //deduce for loan if exists
+            if(st.getLoan() != 0){
+                st.deducedForLoan();
+            }
+        }
+        for(SavingAccount st:this.allSavingAccounts){
+            st.setYear(st.getYear()+1);
+            //Interest rates on deposit
+            st.InterestOnDeposit();
+            //deduce service charge
+            st.setDeposit(st.getDeposit() - 500);
+            //deduce for loan if exists
+            if(st.getLoan() != 0){
+                st.deducedForLoan();
+            }
 
+        }
+        for(FixedDepositAccount st: this.allFixedDepositAccounts){
+            st.setYear(st.getYear()+1);
+            //Interest rates on deposit
+            st.InterestOnDeposit();
+            //deduce service charge
+            st.setDeposit(st.getDeposit() - 500);
+            //deduce for loan if exists
+            if(st.getLoan() != 0){
+                st.deducedForLoan();
+            }
+        }
+        for(LoanAccount st: this.allLoanAccounts){
+            st.setYear(st.getYear()+1);
+            //no service charge
+        }
+        System.out.println("1 year passed");
     }
 }

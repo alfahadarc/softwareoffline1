@@ -8,9 +8,14 @@ public abstract class Account {
     public Account() {
         this.deposit = 0;
         this.loan = 0;
+        this.year = 0;
     }
 
-    public Account(String name,double deposit) {
+    public double getLoanIntRate() {
+        return loanIntRate;
+    }
+
+    public Account(String name, double deposit) {
         this.deposit = deposit;
         this.name = name;
         this.year = 0;
