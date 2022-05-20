@@ -5,6 +5,7 @@ public abstract class Account {
     double loan;
     int year;
     String type;
+    double internalFundDecreaseBy = 0;
 
     public Account() {
         this.deposit = 0;
@@ -16,7 +17,15 @@ public abstract class Account {
         return loanIntRate;
     }
 
-    public Account(String name,String type, double deposit) {
+    public double getInternalFundDecreaseBy() {
+        return internalFundDecreaseBy;
+    }
+
+    public void setInternalFundDecreaseBy(double internalFundDecreaseBy) {
+        this.internalFundDecreaseBy = internalFundDecreaseBy;
+    }
+
+    public Account(String name, String type, double deposit) {
         this.deposit = deposit;
         this.name = name;
         this.year = 0;
@@ -84,6 +93,7 @@ public abstract class Account {
     public void WithdrawMoney(double money){
         if(this.getDeposit() - money >=0) {
             this.setDeposit(this.getDeposit() - money);
+            this.setInternalFundDecreaseBy(money);
             //withdraw success msg
             System.out.println("withdraw " + money + "$; current balance " + this.deposit+"$");
         }else{

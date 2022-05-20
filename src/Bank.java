@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class Bank {
-    final double initial_fund = 1000000;
+    double initial_fund = 1000000;
     private LinkedList<String> usersName;
     private LinkedList<SavingAccount> allSavingAccounts;
     private LinkedList<StudentAccount> allStudentsAccounts;
@@ -95,18 +95,22 @@ public class Bank {
         if(type.equals("Student")){
             StudentAccount newAccount = new StudentAccount(name,"Student", deposit);
             this.allStudentsAccounts.add(newAccount);
+            this.initial_fund = this.initial_fund + deposit;
 
         }else if(type.equals("Loan")){
             LoanAccount newAccount = new LoanAccount(name ,"Loan", deposit);
             this.allLoanAccounts.add(newAccount);
+            this.initial_fund = this.initial_fund + deposit;
 
         }else if(type.equals("Savings")){
             SavingAccount newAccount = new SavingAccount(name,"Savings", deposit);
             this.allSavingAccounts.add(newAccount);
+            this.initial_fund = this.initial_fund + deposit;
         }else if(type.equals("Fixed_deposit")){
             if(deposit >= 100000){
                 FixedDepositAccount newAccount = new FixedDepositAccount(name ,"Fixed_deposit", deposit);
                 this.allFixedDepositAccounts.add(newAccount);
+                this.initial_fund = this.initial_fund + deposit;
             }else{
                 System.out.println("For this account first deposit must not be less than 100,000$");
                 return;
@@ -159,6 +163,7 @@ public class Bank {
                 if(money >= 50000){
                     //deposit it
                     fixedDepositAccount.DepositMoney(money);
+                    this.initial_fund = this.initial_fund + money;
                 }else{
                     System.out.println("For this account deposit amount must not be less than 50,000$");
                     return;
@@ -171,16 +176,19 @@ public class Bank {
             SavingAccount savingAccount = findInSavingAccount(name);
             if(savingAccount != null){
                 savingAccount.DepositMoney(money);
+                this.initial_fund = this.initial_fund + money;
             }
         }else if(type.equals("Loan")){
             LoanAccount loanAccount  = findInLoanAccount(name);
             if(loanAccount != null){
                 loanAccount.DepositMoney(money);
+                this.initial_fund = this.initial_fund + money;
             }
         }else if(type.equals("Student")){
             StudentAccount studentAccount = findInStudentAccount(name);
             if(studentAccount != null){
                 studentAccount.DepositMoney(money);
+                this.initial_fund = this.initial_fund + money;
             }
         }else{
             System.out.println("Error!!unknown type(if Fixed deposit give Fixed_deposit)");
@@ -195,12 +203,20 @@ public class Bank {
             FixedDepositAccount fixedDepositAccount = findInFixedDepositAccount(name);
             if(fixedDepositAccount != null){
                 fixedDepositAccount.WithdrawMoney(money);
+                if(fixedDepositAccount.getInternalFundDecreaseBy() != 0) {
+                    this.initial_fund = this.initial_fund - fixedDepositAccount.getInternalFundDecreaseBy();
+                    fixedDepositAccount.setInternalFundDecreaseBy(0);
+                }
             }
 
         }else if(type.equals("Savings")){
             SavingAccount savingAccount = findInSavingAccount(name);
             if(savingAccount != null){
                 savingAccount.WithdrawMoney(money);
+                if(savingAccount.getInternalFundDecreaseBy() != 0) {
+                    this.initial_fund = this.initial_fund - savingAccount.getInternalFundDecreaseBy();
+                    savingAccount.setInternalFundDecreaseBy(0);
+                }
             }
         }else if(type.equals("Loan")){
             LoanAccount loanAccount  = findInLoanAccount(name);
@@ -214,6 +230,10 @@ public class Bank {
             StudentAccount studentAccount = findInStudentAccount(name);
             if(studentAccount != null){
                 studentAccount.WithdrawMoney(money);
+                if(studentAccount.getInternalFundDecreaseBy() != 0) {
+                    this.initial_fund = this.initial_fund - studentAccount.getInternalFundDecreaseBy();
+                    studentAccount.setInternalFundDecreaseBy(0);
+                }
             }
         }else{
             System.out.println("Error!!unknown type(if Fixed deposit give Fixed_deposit)");
@@ -366,10 +386,13 @@ public class Bank {
            //set user loan; first find the user
             if(employeeType.equals("MD")){
                 this.MD.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                this.initial_fund = this.initial_fund - loanRequest.getAmount();
             }else if(employeeType.equals("S1")){
                 this.S1.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                this.initial_fund = this.initial_fund - loanRequest.getAmount();
             }else {
                 this.S2.ApproveLoan(loanRequest, this.allStudentsAccounts, this.allSavingAccounts, this.allFixedDepositAccounts, this.allLoanAccounts);
+                this.initial_fund = this.initial_fund - loanRequest.getAmount();
             }
 
         }else{
